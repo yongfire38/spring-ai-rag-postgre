@@ -1,0 +1,42 @@
+package com.example.chat.service.impl;
+
+import com.example.chat.service.OllamaModelService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.ollama.api.OllamaApi;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class OllamaModelServiceImpl implements OllamaModelService {
+
+    private final OllamaApi ollamaApi;
+
+    @Override
+    public boolean isOllamaAvailable() {
+        try {
+            ollamaApi.listModels();
+            return true;
+        } catch (Exception e) {
+            log.warn("Ollama 사용 불가: {}", e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public List<String> getInstalledModels() {
+        try {
+            var modelResponse = ollamaApi.listModels();
+            return modelResponse.models().stream()
+                .map(model -> model.name())
+                .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.error("모델 목록 조회 실패", e);
+            return List.of();
+        }
+    }
+}
