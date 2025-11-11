@@ -1,4 +1,4 @@
-# Spring AI와 Redis를 사용한 RAG(Retrieval-Augmented Generation) 샘플
+# Spring AI와 Postgre를 사용한 RAG(Retrieval-Augmented Generation) 샘플
 
 ## 환경 설정
 
