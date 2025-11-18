@@ -1,5 +1,6 @@
 package com.example.chat.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,20 @@ import java.time.LocalDateTime;
 public class ChatSession {
     private String sessionId;
     private String title;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime lastMessageAt;
+
+    /**
+     * 3-parameter constructor for creating new sessions
+     */
+    public ChatSession(String sessionId, String title, LocalDateTime createdAt) {
+        this.sessionId = sessionId;
+        this.title = title;
+        this.createdAt = createdAt;
+        this.lastMessageAt = createdAt;
+    }
 }

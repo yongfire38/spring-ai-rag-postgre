@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 채팅 세션 관리 서비스 인터페이스
  */
-public interface ChatSessionService {
+public interface EgovChatSessionService {
     
     /**
      * 새로운 채팅 세션 생성

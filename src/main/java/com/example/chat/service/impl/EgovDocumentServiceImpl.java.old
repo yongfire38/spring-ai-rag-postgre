@@ -32,10 +32,10 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 
-import com.example.chat.service.DocumentService;
+import com.example.chat.service.EgovDocumentService;
 import com.example.chat.repository.DocumentMetadataRepository;
 import com.example.chat.model.DocumentMetadata;
-import com.example.chat.util.DocumentHashUtil;
+import com.example.chat.util.EgovDocumentHashUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +43,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class DocumentServiceImpl implements DocumentService {
+public class EgovDocumentServiceImpl implements EgovDocumentService {
 
     private final PgVectorStore pgVectorStore;
 
@@ -204,7 +204,7 @@ public class DocumentServiceImpl implements DocumentService {
                 String hash = hashCache.get(cacheKey);
                 if (hash == null) {
                     // 캐시에 없으면 계산 (안전장치)
-                    hash = DocumentHashUtil.calculateHash(doc.getText());
+                    hash = EgovDocumentHashUtil.calculateHash(doc.getText());
                     log.warn("해시 캐시 미스: filename={}, chunkIndex={}", filename, chunkIndex);
                 }
                 
@@ -384,7 +384,7 @@ public class DocumentServiceImpl implements DocumentService {
         if (content == null || content.trim().isEmpty()) {
             return false;
         }
-        String newHash = DocumentHashUtil.calculateHash(content);
+        String newHash = EgovDocumentHashUtil.calculateHash(content);
         
         // 해시값을 캐시에 저장 (processChunksInSmallBatches에서 재사용)
         String cacheKey = filename + "_" + chunkIndex;

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
-public class AsyncConfig {
+public class EgovAsyncConfig {
 
     @Bean(name = "documentProcessingExecutor")
     public Executor documentProcessingExecutor() {

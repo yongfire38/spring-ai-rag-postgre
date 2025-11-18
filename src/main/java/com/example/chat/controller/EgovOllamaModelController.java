@@ -1,6 +1,6 @@
 package com.example.chat.controller;
 
-import com.example.chat.service.OllamaModelService;
+import com.example.chat.service.EgovOllamaModelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,9 +20,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/ollama")
 @RequiredArgsConstructor
-public class OllamaModelController {
+public class EgovOllamaModelController {
 
-    private final OllamaModelService ollamaModelService;
+    private final EgovOllamaModelService ollamaModelService;
     
     @Value("${spring.ai.ollama.chat.model}")
     private String defaultModel;

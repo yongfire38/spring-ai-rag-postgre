@@ -2,7 +2,7 @@ package com.example.chat.controller;
 
 import com.example.chat.dto.ChatSession;
 import com.example.chat.dto.ChatMessageDto;
-import com.example.chat.service.ChatSessionService;
+import com.example.chat.service.EgovChatSessionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,9 +30,9 @@ import java.util.List;
 @RequestMapping("/api/chat/sessions")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
-public class ChatSessionController {
+public class EgovChatSessionController {
 
-    private final ChatSessionService chatSessionService;
+    private final EgovChatSessionService chatSessionService;
 
     @PostMapping
     public ResponseEntity<ChatSession> createNewSession() {
